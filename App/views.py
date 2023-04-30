@@ -273,6 +273,7 @@ def editarPerfil(request):
             usuario.email = data['email']
             usuario.first_name= data['first_name']
             usuario.last_name= data['last_name']
+            usuario.set_password(data['password1'])
             usuario.save()
             
             return redirect(reverse('Inicio'), {'mensaje':'Datos actualizados'})            

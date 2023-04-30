@@ -28,7 +28,8 @@ urlpatterns = [
     #Login-Logout-Register
     path('login/', loginView, name='login'),
     path('registro/', register, name='register'), 
-    path('logout/', LogoutView.as_view(template_name='logout.html'), name='logout'), 
+    path('logout/', LogoutView.as_view(template_name='logout.html'), name='logout'),
+    path('editar-perfil/', editarPerfil, name='editarPerfil'),
     
 ]
 
