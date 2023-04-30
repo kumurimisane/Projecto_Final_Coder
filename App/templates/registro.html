@@ -4,13 +4,14 @@
 
 
 {% block formularios %}
-        <h1>Registro de Usuario</h1>
+<p style="weight: 50px; font-size: x-large;"> Registro de Usuario</p>
+
         <form action="{% url 'register' %}" method="POST" enctype = "multipart/form-data"> {% csrf_token %}
             {{miFormulario.as_p}} 
             <button type="submit"> Registrarse </button>
         </form>
 
 
-        <h4>{{mensaje}}</h4>
+        <p>{{mensaje}}</p>
 {% endblock formularios %}
     

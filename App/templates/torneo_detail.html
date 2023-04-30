@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+
+{% load static %}
+ 
+
+{% block formularios %}
+<p style="weight: 50px; font-size: x-large;">Vista detallada de los torneo</p>
+
+    <li>Nombre del Torneo: {{torneodetail.nombre_torneo}}</li>
+    <li>Cantidad de participantes del Torneo:  {{torneodetail.cantidad_participantes}}</li>
+    <li>Lugar del Torneo:   {{torneodetail.lugar_del_torneo}}</li>
+    <li>Premio del Torneo:  {{torneodetail.premio}}</li>
+    <li>Codigo de Torneo:  {{torneodetail.codigo_de_torneo}}</li>
+    {% if lista.imagen %}
+    <img src="{{ torneodetail.imagen.url }}" style="height: 200px; width:200px">
+    {% endif %}
+{% endblock formularios %}

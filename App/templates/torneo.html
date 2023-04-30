@@ -5,11 +5,13 @@
 
 {% block formularios %}
 {{mensaje}}    
-<h1>Lista de Torneos</h1>
+<p style="weight: 50px; font-size: x-large;"> Lista de Torneos</p>
 
         {% for lista in torneo %}
             <p>{{lista.nombre_torneo}}  {{lista.codigo_de_torneo}}</p>
+            {% if lista.imagen %}
             <img src="{{ lista.imagen.url }}" style="height: 200px; width:200px">
+            {% endif %}
             
             <div style="display: flex; column-gap: 5px;">
                 <div >
@@ -19,6 +21,9 @@
                 </div>
                 <div >
                         <button type="submit"> <a href="{% url 'editarTorneo' lista.id %}">Editar</a></button> 
+                </div>
+                <div >
+                    <button type="submit"> <a href="{% url 'torneoDetail' lista.id %}">Mas Informacion</a></button> 
                 </div>
             </div>
         {% endfor %}

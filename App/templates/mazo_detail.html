@@ -4,8 +4,14 @@
  
 
 {% block formularios %}
+<p style="weight: 50px; font-size: x-large;">Vista detallada de Mazos</p>
 
-<h1>Vista detallada de Mazos</h1>
-<h3>Mazos: {{mazodetail.nombre}}, Carta Pricipal: {{mazodetail.carta_principal}}</h3>
-
+    <li>Nombre del Mazo: {{mazodetail.nombre}}</li>
+    <li>Tipo del Mazo:{{mazodetail.tipo}}</li>
+    <li>Carta principal del Mazo:{{mazodetail.carta_principal}}</li>
+    <li>Cantidad de cartas del Mazo:{{mazodetail.cantidad_de_cartas}}</li>
+    <li>Descripcion del Mazo:{{mazodetail.descripcion}}</li>
+    {% if lista.imagen %}
+    <img src="{{ mazodetail.imagen.url }}" style="height: 200px; width:200px">
+    {% endif %}
 {% endblock formularios %}

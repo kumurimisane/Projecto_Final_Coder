@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+
+{% load static %}
+ 
+
+{% block formularios %}
+<p style="weight: 50px; font-size: x-large;">Vista detallada de las cartas</p>
+
+    <li>Nombre de la Carta: {{cartasdetail.nombre}}</li>
+    <li>Tipo de Tipo:  {{cartasdetail.tipo}}</li>
+    <li>Nivel de la Carta:   {{cartasdetail.nivel}}</li>
+    <li>Ataque de la Carta:  {{cartasdetail.ataque}}</li>
+    <li>Defensa de la Carta:  {{cartasdetail.defensa}}</li>
+    <li>Descripcion de la Carta:  {{cartasdetail.descripcion}}</li>
+    {% if lista.imagen %}
+        <img src="{{ cartasdetail.imagen.url }}" style="height: 200px; width:200px">
+    {% endif %}
+{% endblock formularios %}

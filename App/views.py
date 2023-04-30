@@ -28,6 +28,7 @@ def cartas(request):
 
 
 # Create Cartas
+@login_required(login_url='/App/')
 def crearCartas(request):
     if request.method == 'POST':
         miFormulario = CartasFormulario(request.POST, request.FILES)
@@ -51,7 +52,7 @@ def crearCartas(request):
         return render(request, 'crear-cartas.html', {'miFormulario': miFormulario})
     
 #Delete Cartas
-
+@login_required(login_url='/App/')
 def eliminarCartas(request, id):
     if request.method == 'POST':
 
@@ -62,7 +63,7 @@ def eliminarCartas(request, id):
         return render(request, 'eliminarcartas.html', {"cartas":cartas} )
 
 #Update Cartas
-
+@login_required(login_url='/App/')
 def editarCartas(request, id):
 
     cartas = Cartas.objects.get(id=id)
@@ -95,6 +96,10 @@ def editarCartas(request, id):
         })
         return render(request, 'editar-cartas.html', {'miFormulario': miFormulario})
 
+class CartasDetail(LoginRequiredMixin, DetailView):
+    model = Cartas
+    template_name = "cartas_detail.html"
+    context_object_name = 'cartasdetail'
 
 #CRUD Torneo
 
@@ -156,7 +161,6 @@ def editarTorneo(request, id):
             torneo.lugar_del_torneo = dataformulario['lugar_del_torneo']
             torneo.premio = dataformulario['premio']
             torneo.codigo_de_torneo = dataformulario['codigo_de_torneo']
-            torneo.imagen = dataformulario['imagen']
             torneo.save()
             return redirect(reverse('Inicio'))
         else:
@@ -169,64 +173,51 @@ def editarTorneo(request, id):
             "Lugar":torneo.lugar_del_torneo,
             "Premio": torneo.premio,    
             "Codigo":torneo.codigo_de_torneo,
-            "Imagen": torneo.imagen
         })
         return render(request, 'editar-torneo.html', {'miFormulario': miFormulario})
+    
+class TorneoDetail(LoginRequiredMixin,DetailView):
+    
+    model = Torneo
+    template_name = "torneo_detail.html"
+    context_object_name = 'torneodetail'
+    
 
+#Crud Mazo
 class MazoList(ListView):
     
     model = Mazo
     template_name= "mazos.html"
     context_object_name = 'mazos'
 
-class MazoDetail(DetailView):
+class MazoDetail(LoginRequiredMixin,DetailView):
     
     model = Mazo
-    template_name = "mazos_detail.html"
+    template_name = "mazo_detail.html"
     context_object_name = 'mazodetail'
 
-class MazoCreate(CreateView):
+class MazoCreate(LoginRequiredMixin,CreateView):
     model = Mazo
     template_name = "mazo_create.html"
     fields = ['nombre','tipo','carta_principal','cantidad_de_cartas', 'descripcion', 'imagen']
     success_url = '/App/'
 
-def MazoUpdate(request,id):
-    mazo = Mazo.objects.get(id=id)
-    
-    if request.method == 'POST':
-        miFormulario = MazoFormulario(request.POST)
-        if miFormulario.is_valid():
-            dataformulario = miFormulario.cleaned_data
-            mazo.nombre = dataformulario['nombre']
-            mazo.tipo = dataformulario['tipo']
-            mazo.nivel = dataformulario['carta_principal']
-            mazo.ataque = dataformulario['cantidad_de_cartas']
-            mazo.defensa = dataformulario['descripcion']
-            mazo.imagen = dataformulario['imagen']
-            mazo.save()
-            return redirect(reverse('Inicio'))
-        else:
-            return render(request, 'cartas.html',{"mensaje":"Formulario Invalido"})
+class MazoUpdate(LoginRequiredMixin,UpdateView):
+    model= Mazo
+    template_name= "mazo_update.html"
+    fields= ['nombre','tipo', 'carta_principal', 'cantidad_de_cartas']
+    success_url= '/App/'
 
-    else:
-        miFormulario = MazoFormulario(initial={
-            "nombre":mazo.nombre,
-            "tipo":mazo.tipo,
-            "carta_principal":mazo.nivel,
-            "cantidad_de_cartas": mazo.ataque,    
-            "descripcion":mazo.defensa,
-            "Imagen": mazo.imagen
-        })
-        return render(request, 'editar-mazos.html', {'miFormulario': miFormulario})
-
-class MazoDelete(DeleteView):
+class MazoDelete(LoginRequiredMixin,DeleteView):
     model = Mazo
     template_name = "mazo_delete.html"
     success_url = '/App/'
-
-def contactenos(request):
-    return render(request, 'contactenos.html')
+    
+class Contactenos(CreateView):
+    model = Contacto
+    template_name = "contactenos.html"
+    fields = ['nombre','apellido','email','mensaje']
+    success_url = '/App/'
 
 def about(request):
     return render(request, 'acerca_de_mi.html')
@@ -270,7 +261,7 @@ def register(request):
     else:
         miFormulario = UserCreationForm()
         return render(request, 'registro.html', {'miFormulario': miFormulario})
-
+@login_required(login_url='/App/')
 def editarPerfil(request):
     
     usuario = request.user

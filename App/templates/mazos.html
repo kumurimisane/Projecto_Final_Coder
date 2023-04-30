@@ -5,11 +5,14 @@
 
 {% block formularios %}
 
-<h1>Lista de Mazos</h1>
+<p style="weight: 50px; font-size: x-large;"> Lista de Mazos</p>
 
         {% for lista in mazos %}
-            <p>{{lista}}</p>
+            <p>{{lista.nombre}}</p>
+            <p>{{lista.tipo}}</p>
+            {% if lista.imagen %}
             <img src="{{ lista.imagen.url }}" style="height: 200px; width:200px">
+            {% endif %}
             <div style="display: flex; column-gap: 5px;">
                 <div >
                     <form action="{% url 'eliminarMazo' lista.id %}" method="POST">{% csrf_token %}
@@ -19,8 +22,11 @@
                 <div >
                         <button type="submit"> <a href="{% url 'editarMazo' lista.id %}">Editar</a></button> 
                 </div>
+                <div >
+                    <button type="submit"> <a href="{% url 'mazoDetail' lista.id %}">Mas Informacion</a></button> 
+                </div>
             </div>
         {% endfor %}
 
-    <a href="{% url 'crearMazo' %}">Crear torneo</a> 
+    <a href="{% url 'crearMazo' %}">Crear Mazo</a> 
 {% endblock formularios %}

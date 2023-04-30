@@ -54,11 +54,11 @@
                            <li><a href="{% url 'torneo' %}">Torneo</a></li>
                            <li><a href="{% url 'Mazos' %}">Mazos</a></li>
                            <li><a href="{% url 'Contactenos' %}">Contactenos</a></li>
-                           <li><a href="{% url 'About' %}">Acerca de mi</a></li> 
+                           <li><a href="{% url 'About' %}">Acerca de nosotros</a></li> 
 
                               {% if user.is_authenticated %}
                               <li>   
-                              <span>Bienvendio <b> {{user.username}}</b></span> 
+                              <span>Bienvenido <b> {{user.username}}</b></span> 
                                  <a href="{% url 'logout' %}" style="margin-left: 10px;">Cerrar Sesion</a>
                               </li>
                               {% else %}

@@ -18,13 +18,13 @@ class TorneoFormulario(forms.ModelForm):
         model = Torneo
         fields = ['nombre_torneo', 'cantidad_participantes', 'lugar_del_torneo', 'premio', 'codigo_de_torneo', 'imagen']
 
-class ContactoFormulario(forms.ModelForm):
-    class Meta:
-        model = Contacto
-        fields = ['nombre', 'apellido', 'email', 'mensaje']
-
 class UserEditForm(UserChangeForm):
     
     class Meta:
         model = User
         fields = ['email', 'first_name', 'last_name']
+        
+class ContactenosFormulario(forms.ModelForm):
+    class Meta:
+        model = Contacto
+        fields = ['nombre', 'apellido', 'email', 'mensaje']
