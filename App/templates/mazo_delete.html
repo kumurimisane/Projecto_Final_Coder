@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+
+{% block formularios %}
+        <div class="formulario">
+            <form action="" method="POST" enctype = "multipart/form-data"> {% csrf_token %}
+                <p>Estas seguro de eliminar el registro?</p>
+                <button type="submit"> Confirmar </button>
+                <button type="submit"><a href="{% url 'Inicio' %}"> Cancelar</a></button> 
+            </form>
+        </div>
+{% endblock formularios %}
+    

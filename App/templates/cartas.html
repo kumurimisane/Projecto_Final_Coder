@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+
+{% load static %}
+ 
+
+{% block formularios %}
+{{mensaje}}    
+<h1>Lista de Cartas</h1>
+    
+        {% for lista in miscartas %}
+        
+        {% if lista.nombre and lista.tipo %}
+            <p>{{lista.nombre}}</p>
+            {% if lista.imagen %}
+            <img src="{{ lista.imagen.url }}" style="height: 200px; width:200px">
+            {% endif %}
+
+            <div style="display: flex;">
+                <div style="margin-right: 50px;">
+                    <form action="{% url 'eliminarCartas' lista.id %}" method="POST">{% csrf_token %}
+                        <button type="submit"> Eliminar </button>
+                    </form>
+                </div>
+                <div style="margin-right: 50px;">
+                        <button type="submit"> <a href="{% url 'editarCartas' lista.id %}">Editar</a></button> 
+                </div>
+            </div>
+        {% endif %}
+            
+        {% endfor %}
+        
+    <a href="{% url 'crearCartas' %}">Crear Cartas</a> 
+{% endblock formularios %}

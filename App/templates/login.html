@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+
+{% block formularios %}
+        <h1>Inicio de Sesion</h1>
+
+        <form action="" method="POST" enctype = "multipart/form-data"> {% csrf_token %}
+            {{miFormulario.as_p}} 
+            <button type="submit"> Ingresar </button>
+        </form>
+        <h4>{{mensaje}}</h4>
+{% endblock formularios %}
+    

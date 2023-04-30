@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+
+{% block formularios %}
+        <div class="formulario">
+            <form action="{% url 'crearMazo' %}" method="POST" enctype = "multipart/form-data"> {% csrf_token %}
+                {{form.as_p}}
+                <button type="submit"> Enviar </button>
+            </form>
+        </div>
+{% endblock formularios %}
+    

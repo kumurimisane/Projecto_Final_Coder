@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+
+{% block formularios %}
+        <div class="formulario">
+            <form action="{% url 'crearTorneo' %}" method="POST" enctype = "multipart/form-data"> {% csrf_token %}
+                {{miFormulario.as_p}}
+                <h4>{{mensaje}}</h4>
+                <button type="submit"> Enviar </button>
+            </form>
+        </div>
+{% endblock formularios %}
+    
