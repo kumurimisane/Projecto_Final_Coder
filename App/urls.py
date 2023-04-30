@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib.auth.views import LogoutView
 from django.conf.urls.static import static
 from .views import *
+from . import views
 
 urlpatterns = [
     path('', inicio, name='Inicio'),
@@ -30,6 +31,8 @@ urlpatterns = [
     path('registro/', register, name='register'), 
     path('logout/', LogoutView.as_view(template_name='logout.html'), name='logout'),
     path('editar-perfil/', editarPerfil, name='editarPerfil'),
+    
+    path('<str:page>/', views.no_pages, name='no_pages'),
     
 ]
 

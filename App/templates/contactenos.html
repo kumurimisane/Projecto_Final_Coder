@@ -7,7 +7,7 @@
     <p style="weight: 50px; font-size: x-large;">Formlario de Contacto</p>
 
     <div class="formulario">
-        <form action="{% url 'Inicio' %}" method="POST" enctype = "multipart/form-data"> {% csrf_token %}
+        <form  method="POST" enctype = "multipart/form-data"> {% csrf_token %}
             {{form.as_p}}
             <button type="submit"> Enviar </button>
         </form>

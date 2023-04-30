@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+
+{% block formularios %}
+
+<div style="border: 5px solid #ccc; padding: 20px; margin-top: 10%; max-width: 600px; margin-left: auto; margin-right: auto; text-align: center;">
+  <section class="error">
+    <div class="error__container">
+      <h1 class="error__title">¡Oops!</h1>
+      <p class="error__message">La página "{{ page }}" que estás buscando no existe en este sitio web.</p>
+      <a href="{% url 'Inicio' %}" class="btn btn--primary error__button">Volver a la página de inicio</a>
+    </div>
+  </section>
+</div>
+
+{% endblock formularios %}
